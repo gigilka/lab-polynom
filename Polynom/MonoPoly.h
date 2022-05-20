@@ -76,6 +76,20 @@ struct Monom {
 class Polynom :public THeadList<Monom> {
 	Polynom();
 	Polynom(Polynom& p);
+
+	Polynom& operator=(Polynom& p);
+	Polynom& operator+(Polynom& p);
+	Polynom& operator-(Polynom& p);
+	Polynom& operator*(Polynom& p);
+	Polynom& operator*(Monom& m);
+	Polynom& operator*(int a);
+
+	bool operator==(Polynom& p);
+	bool operator!=(Polynom& p);
+
+	void AddMonom(Monom m);
+
+
 };
 
 Polynom::Polynom() {
@@ -88,4 +102,47 @@ Polynom::Polynom(Polynom& p) {
 	for (p.Reset(); !p.IsEnd(); p.GoNext()) {
 		InsLast(p.GetCurrent());
 	}
+}
+Polynom& Polynom::operator=(Polynom& p) {
+	
+}
+
+Polynom& Polynom::operator+(Polynom& p) {
+
+}
+
+Polynom& Polynom::operator-(Polynom& p) {
+
+}
+
+Polynom& Polynom::operator*(Polynom& p) {
+
+}
+
+Polynom& Polynom::operator*(Monom& m) {
+
+}
+
+Polynom& Polynom::operator*(int a) {
+
+}
+
+bool Polynom::operator==(Polynom& p) {
+	Polynom tmp = Polynom(p);
+	tmp.Reset();
+	Reset();
+	while (!IsEnd()) {
+		if (pCurr->val == tmp.pCurr->val && pCurr->val.k == tmp.pCurr->val.k) {
+			tmp.GoNext();
+			GoNext();
+		}
+		else {
+			return false;
+		}
+	}
+	return true;
+}
+
+bool Polynom::operator!=(Polynom& p) {
+	return !operator==(p);
 }
